@@ -104,27 +104,11 @@ def home():
                                    lat8=coords[7][0], long8=coords[7][1], lat9=coords[8][0], long9=coords[8][1],
                                    lat10=coords[9][0], long10=coords[9][1])
 
-    return '''<form method="POST">
-                      Hello! Wondering where there may be parking spots near Seattle U? What time?<br>
-                      <select name="when">
-                          <option value="8">8 am</option>
-                          <option value="9">9 am</option>
-                          <option value="10">10 am</option>
-                          <option value="11">11 am</option>
-                          <option value="12">12 pm</option>
-                          <option value="13">1 pm</option>
-                          <option value="14">2 pm</option>
-                          <option value="15">3 pm</option>
-                          <option value="16">4 pm</option>
-                          <option value="17">5 pm</option>
-                          <option value="18">6 pm</option>
-                          <option value="19">7 pm</option>
-                          <option value="20">8 pm</option>
-                          <option value="21">9 pm</option>
-                    </select>
-                      <br><br><input type="submit" name="button" value="Show Closest Spots"><br><br>
-                      <input type="submit" name="button" value="Show Best Spots"><br>
-                  </form>'''
+        ''''''''''
+                  <h1>Estimated parking time: {}</h1>
+                  <h1>Parking spaces are: {}</h1>.format(when, coords)'''
+
+    return render_template("home.html")
 
 
 

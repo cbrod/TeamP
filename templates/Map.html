@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #description {
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: 300;
+      }
+
+      #infowindow-content .title {
+        font-weight: bold;
+      }
+
+      #infowindow-content {
+        display: none;
+      }
+
+      #map #infowindow-content {
+        display: inline;
+      }
+
+      .pac-card {
+        margin: 10px 10px 0 0;
+        border-radius: 2px 0 0 2px;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        outline: none;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        background-color: #fff;
+        font-family: Roboto;
+      }
+
+      #pac-container {
+        padding-bottom: 12px;
+        margin-right: 12px;
+      }
+
+      .pac-controls {
+        display: inline-block;
+        padding: 5px 11px;
+      }
+
+      .pac-controls label {
+        font-family: Roboto;
+        font-size: 13px;
+        font-weight: 300;
+    </style>
+  </head>
+  <body>
+    <center><h1>FindMySpot</h1></center>
+    <br>
+    <div id="map"></div>
+    <script>
+      // This example adds a search box to a map, using the Google Place Autocomplete
+      // feature. People can enter geographical searches. The search box will return a
+      // pick list containing a mix of places and predicted search terms.
+
+      // This example requires the Places library. Include the libraries=places
+      // parameter when you first load the API. For example:
+      // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+
+      function initAutocomplete() {
+        var mySpot1 = {lat: {{ lat1 }}, lng: {{long1}}}
+        var mySpot2 = {lat: {{ lat2 }}, lng: {{long2}}}
+        var mySpot3 = {lat: {{ lat3 }}, lng: {{long3}}}
+        var mySpot4 = {lat: {{ lat4 }}, lng: {{long4}}}
+        var mySpot5 = {lat: {{ lat5 }}, lng: {{long5}}}
+        var mySpot6 = {lat: {{ lat6 }}, lng: {{long6}}}
+        var mySpot7 = {lat: {{ lat7 }}, lng: {{long7}}}
+        var mySpot8 = {lat: {{ lat8 }}, lng: {{long8}}}
+        var mySpot9 = {lat: {{ lat9 }}, lng: {{long9}}}
+        var mySpot10 = {lat: {{ lat10 }}, lng: {{long10}}}
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 47.6089, lng: -122.3175}, //seattle u coordinates
+          zoom: 16,
+          mapTypeId: 'roadmap'
+        });
+
+        var marker1 = new google.maps.Marker({
+            position:mySpot1,
+            map: map
+        })
+        var marker2 = new google.maps.Marker({
+            position:mySpot2,
+            map: map
+        })
+        var marker3 = new google.maps.Marker({
+            position:mySpot3,
+            map: map
+        })
+        var marker4 = new google.maps.Marker({
+            position:mySpot4,
+            map: map
+        })
+        var marker5 = new google.maps.Marker({
+            position:mySpot5,
+            map: map
+        })
+        var marker6 = new google.maps.Marker({
+            position:mySpot6,
+            map: map
+        })
+        var marker7 = new google.maps.Marker({
+            position:mySpot7,
+            map: map
+        })
+        var marker8 = new google.maps.Marker({
+            position:mySpot8,
+            map: map
+        })
+        var marker9 = new google.maps.Marker({
+            position:mySpot9,
+            map: map
+        })
+        var marker10 = new google.maps.Marker({
+            position:mySpot10,
+            map: map
+        })
+
+        // Bias the SearchBox results towards current map's viewport.
+        map.addListener('bounds_changed', function() {
+          searchBox.setBounds(map.getBounds());
+        });
+
+        var markers = [];
+        // Listen for the event fired when the user selects a prediction and retrieve
+        // more details for that place.
+        searchBox.addListener('places_changed', function() {
+          var places = searchBox.getPlaces();
+
+          if (places.length == 0) {
+            return;
+          }
+
+          // Clear out the old markers.
+          markers.forEach(function(marker) {
+            marker.setMap(null);
+          });
+          markers = [];
+
+          // For each place, get the icon, name and location.
+          var bounds = new google.maps.LatLngBounds();
+          places.forEach(function(place) {
+            if (!place.geometry) {
+              console.log("Returned place contains no geometry");
+              return;
+            }
+            var icon = {
+              url: place.icon,
+              size: new google.maps.Size(71, 71),
+              origin: new google.maps.Point(0, 0),
+              anchor: new google.maps.Point(17, 34),
+              scaledSize: new google.maps.Size(25, 25)
+            };
+
+            // Create a marker for each place.
+            markers.push(new google.maps.Marker({
+              map: map,
+              icon: icon,
+              title: place.name,
+              position: place.geometry.location
+            }));
+
+            if (place.geometry.viewport) {
+              // Only geocodes have viewport.
+              bounds.union(place.geometry.viewport);
+            } else {
+              bounds.extend(place.geometry.location);
+            }
+          });
+          map.fitBounds(bounds);
+        });
+      }
+
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD0qdwbq4cqqHzwPbNsr84ZekR02wdSDpM&libraries=places&callback=initAutocomplete"
+         async defer></script>
+  </body>
+</html>
