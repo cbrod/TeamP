@@ -27,14 +27,17 @@ def connect():
 
         # execute a statement
         print('Top 10 spots near Capitol Hill: ')
-        cur.execute("SELECT row_to_json(top10spots(17));")
+        cur.execute("SELECT * from top10spots(17);")
 
         # display the PostgreSQL database server version
-        db_version = cur.fetchone()[0]
-        coordz = db_version['geotag'].split("POINT (", 2)[1].split(" ")
-        lat = coordz[0]
-        long = coordz[1].split(")")[0]
-        coords = [lat, long]
+        db_version = cur.fetchall()
+        coords = []
+        for i in range(len(db_version)):
+            coordz = db_version[i][4].split("POINT (", 2)[1].split(" ")
+            lat = coordz[0]
+            long = coordz[1].split(")")[0]
+            latlong = [lat, long]
+            coords.append(latlong)
         # return render_template("index.html", name=top20)
         return coords
         cur.close()
@@ -52,8 +55,12 @@ def home():
         data = "avaliable"
 
         coords = connect()
-
-        return render_template("Map.html", lat=coords[0], long=coords[1])
+        return render_template("Map.html", lat1=coords[0][0], long1=coords[0][1],
+                               lat2=coords[1][0], long2=coords[1][1], lat3=coords[2][0], long3=coords[2][1],
+                               lat4=coords[3][0], long4=coords[3][1], lat5=coords[4][0], long5=coords[4][1],
+                               lat6=coords[5][0], long6=coords[5][1], lat7=coords[6][0], long7=coords[6][1],
+                               lat8=coords[7][0], long8=coords[7][1], lat9=coords[8][0], long9=coords[8][1],
+                               lat10=coords[9][0], long10=coords[9][1])
 
         ''''''''''
                   <h1>Estimated parking time: {}</h1>
