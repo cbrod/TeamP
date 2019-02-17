@@ -86,7 +86,7 @@
         var mySpot10 = {lat: {{ lat10 }}, lng: {{long10}}}
 
         var map = new google.maps.Map(document.getElementById('map'), {
-          center: mySpot1,//{lat: 47.6089, lng: -122.3175},
+          center: {lat: 47.6089, lng: -122.3175}, //seattle u coordinates
           zoom: 16,
           mapTypeId: 'roadmap'
         });

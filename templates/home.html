@@ -25,18 +25,42 @@
 		<div id="featured">
 			<div class="container">
 				<header>
-					<h2>Welcome</h2>
+					<h2>Welcome!</h2>
 				</header>
 				<!--
 				<p>This is <strong>Linear</strong>, a responsive HTML5 site template freebie by <a href="http://templated.co">TEMPLATED</a>. Released for free under the <a href="http://templated.co/license">Creative Commons Attribution</a> license, so use it for whatever (personal or commercial) &ndash; just give us credit! Check out more of our stuff at <a href="http://templated.co">our site</a> or follow us on <a href="http://twitter.com/templatedco">Twitter</a>.</p>
 				-->
 				<form method="POST">
-					<p> Input the time you are looking for: <input type="text" name="when">
-					   <input type="submit" value="Submit"><br>
+					<p> Input the time you are looking for: 
+						<select name="when">
+                    <option value="8">8 am</option>
+                    <option value="9">9 am</option>
+                    <option value="10">10 am</option>
+                    <option value="11">11 am</option>
+                    <option value="12">12 pm</option>
+                    <option value="13">1 pm</option>
+                    <option value="14">2 pm</option>
+                    <option value="15">3 pm</option>
+                    <option value="16">4 pm</option>
+                    <option value="17">5 pm</option>
+                    <option value="18">6 pm</option>
+                    <option value="19">7 pm</option>
+                    <option value="20">8 pm</option>
+                    <option value="21">9 pm</option>
+                  </select>
+                  <select name="day">
+                    <option value="4">Thursday</option>
+                    <option value="5">Friday</option>
+                    <option value="6">Saturday</option>
+                    <option value="0">Sunday</option>
+                    <option value="1">Monday</option>
+                    <option value="2">Tuesday</option>
+                    <option value="3">Wednesday</option>
+                  </select>
+                  <input type="submit" id="closest" value="Show Closest Spots">
+                  <input type="submit" id="best" value="Show Best Spots"><br>
 					</p>
 				</form>
-				
-
 				<hr />
 				<div class="row">
 					<section class="4u">

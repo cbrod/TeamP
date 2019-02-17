@@ -1,13 +1,12 @@
 from flask import Flask, request, render_template
 import psycopg2
-import json
 
 app = Flask(__name__) #create the Flask app
 
 when = "global"
 data = "global"
 
-def connect():
+def connect(time):
     ''""" Connect to the PostgreSQL database server """
     localhost = "findmyspot.cmpdtcyalbuc.us-west-2.rds.amazonaws.com"
     dbname = "TeamP"
@@ -27,7 +26,7 @@ def connect():
 
         # execute a statement
         print('Top 10 spots near Capitol Hill: ')
-        cur.execute("SELECT * from top10spots(17);")
+        cur.execute("SELECT * from top10spots(%s);", (time,))
 
         # display the PostgreSQL database server version
         db_version = cur.fetchall()
@@ -51,10 +50,9 @@ def connect():
 def home():
     if request.method == 'POST':  #this block is only entered when the form is submitted
         when = request.form.get('when')
-
-        data = "avaliable"
-
-        coords = connect()
+        #what = request.form['']
+        #print(what)
+        coords = connect(when)
         return render_template("Map.html", lat1=coords[0][0], long1=coords[0][1],
                                lat2=coords[1][0], long2=coords[1][1], lat3=coords[2][0], long3=coords[2][1],
                                lat4=coords[3][0], long4=coords[3][1], lat5=coords[4][0], long5=coords[4][1],
