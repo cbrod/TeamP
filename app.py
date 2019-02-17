@@ -104,11 +104,29 @@ def home():
                                    lat8=coords[7][0], long8=coords[7][1], lat9=coords[8][0], long9=coords[8][1],
                                    lat10=coords[9][0], long10=coords[9][1])
 
-        ''''''''''
-                  <h1>Estimated parking time: {}</h1>
-                  <h1>Parking spaces are: {}</h1>.format(when, coords)'''
-
     return render_template("home.html")
+
+@app.route("/BlankMap", methods=['GET', 'POST'])
+def blankMap():
+    if request.method == 'POST':  #this block is only entered when the form is submitted
+        if request.form['button'] == "Show Best Spots":
+            when = request.form.get('when')
+            coords = top10spots(when)
+            return render_template("Map.html", lat1=coords[0][0], long1=coords[0][1],
+                               lat2=coords[1][0], long2=coords[1][1], lat3=coords[2][0], long3=coords[2][1],
+                               lat4=coords[3][0], long4=coords[3][1], lat5=coords[4][0], long5=coords[4][1],
+                               lat6=coords[5][0], long6=coords[5][1], lat7=coords[6][0], long7=coords[6][1],
+                               lat8=coords[7][0], long8=coords[7][1], lat9=coords[8][0], long9=coords[8][1],
+                               lat10=coords[9][0], long10=coords[9][1])
+        elif request.form['button'] == "Show Closest Spots":
+            coords = closest10spots()
+            return render_template("Map.html", lat1=coords[0][0], long1=coords[0][1],
+                                   lat2=coords[1][0], long2=coords[1][1], lat3=coords[2][0], long3=coords[2][1],
+                                   lat4=coords[3][0], long4=coords[3][1], lat5=coords[4][0], long5=coords[4][1],
+                                   lat6=coords[5][0], long6=coords[5][1], lat7=coords[6][0], long7=coords[6][1],
+                                   lat8=coords[7][0], long8=coords[7][1], lat9=coords[8][0], long9=coords[8][1],
+                                   lat10=coords[9][0], long10=coords[9][1])
+    return render_template("BlankMap.html")
 
 
 
