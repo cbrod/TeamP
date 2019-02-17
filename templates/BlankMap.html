@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Search</title>
+    <title>Find My Parking</title>
     <link rel="stylesheet" type = "text/css" href="{{ url_for('static', filename = 'styles/skel-noscript.css') }}" />
     <link rel="stylesheet" type = "text/css" href="{{ url_for('static', filename = 'styles/style.css') }}" />
     <link rel="stylesheet" type = "text/css" href="{{ url_for('static', filename = 'styles/style-desktop.css') }}" />
@@ -128,61 +128,11 @@
       // parameter when you first load the API. For example:
       // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
       function initAutocomplete() {
-        var mySpot1 = {lat: {{ lat1 }}, lng: {{long1}}}
-        var mySpot2 = {lat: {{ lat2 }}, lng: {{long2}}}
-        var mySpot3 = {lat: {{ lat3 }}, lng: {{long3}}}
-        var mySpot4 = {lat: {{ lat4 }}, lng: {{long4}}}
-        var mySpot5 = {lat: {{ lat5 }}, lng: {{long5}}}
-        var mySpot6 = {lat: {{ lat6 }}, lng: {{long6}}}
-        var mySpot7 = {lat: {{ lat7 }}, lng: {{long7}}}
-        var mySpot8 = {lat: {{ lat8 }}, lng: {{long8}}}
-        var mySpot9 = {lat: {{ lat9 }}, lng: {{long9}}}
-        var mySpot10 = {lat: {{ lat10 }}, lng: {{long10}}}
         var map = new google.maps.Map(document.getElementById('map'), {
-          center: mySpot1, //{lat: 47.6089, lng: -122.3175}, //seattle u coordinates
+          center: {lat: 47.6089, lng: -122.3175}, //seattle u coordinates
           zoom: 16,
           mapTypeId: 'roadmap'
         });
-        var marker1 = new google.maps.Marker({
-            position:mySpot1,
-            map: map
-        })
-        var marker2 = new google.maps.Marker({
-            position:mySpot2,
-            map: map
-        })
-        var marker3 = new google.maps.Marker({
-            position:mySpot3,
-            map: map
-        })
-        var marker4 = new google.maps.Marker({
-            position:mySpot4,
-            map: map
-        })
-        var marker5 = new google.maps.Marker({
-            position:mySpot5,
-            map: map
-        })
-        var marker6 = new google.maps.Marker({
-            position:mySpot6,
-            map: map
-        })
-        var marker7 = new google.maps.Marker({
-            position:mySpot7,
-            map: map
-        })
-        var marker8 = new google.maps.Marker({
-            position:mySpot8,
-            map: map
-        })
-        var marker9 = new google.maps.Marker({
-            position:mySpot9,
-            map: map
-        })
-        var marker10 = new google.maps.Marker({
-            position:mySpot10,
-            map: map
-        })
         // Bias the SearchBox results towards current map's viewport.
         map.addListener('bounds_changed', function() {
           searchBox.setBounds(map.getBounds());
