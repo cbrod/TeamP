@@ -3,7 +3,7 @@ import psycopg2
 import json
 #from config import config
  
-def connect():
+def connect(time):
     """ Connect to the PostgreSQL database server """
     localhost = "findmyspot.cmpdtcyalbuc.us-west-2.rds.amazonaws.com"
     dbname = "TeamP"
@@ -21,14 +21,21 @@ def connect():
         # create a cursor
         cur = conn.cursor()
         
- # execute a statement
-        print('Top 20 spots near Capitol Hill: ')
-        cur.execute("SELECT row_to_json(top20spots(17)) FROM top20spots(17);")
- 
-        # display the PostgreSQL database server version
+        # execute a statement
+        print('Top 10 spots near Capitol Hill: ')
+        #cur.execute("select row_to_json(top10spots(%s));", (time,))
+        cur.execute("Select * from top10spots(%s);", (time,))
         db_version = cur.fetchall()
-        print(json.dumps(db_version))
+        
+        # display the PostgreSQL database server version
        
+        #print(json.dumps(db_version, indent=2))
+        
+        with open('data.txt', 'w') as outfile:  
+            json.dump(db_version, outfile, indent=2)
+        
+        ##print(json.dumps(db_version))
+        
         cur.close()
         
         
@@ -41,4 +48,4 @@ def connect():
  
  
 if __name__ == '__main__':
-    connect()
+    connect(17)
