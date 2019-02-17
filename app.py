@@ -66,11 +66,7 @@ def home():
                   <h1>Estimated parking time: {}</h1>
                   <h1>Parking spaces are: {}</h1>.format(when, coords)'''
 
-    return '''<form method="POST">
-                  Hello!<br>
-                  When: <input type="text" name="when"><br>
-                  <input type="submit" value="Submit"><br>
-              </form>'''
+    return render_template("home.html")
 
 
 if __name__ == "__main__":

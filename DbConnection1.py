@@ -71,7 +71,7 @@ def connect():
         # execute a statement
         print('Top 20 spots near Capitol Hill: ')
         cur.execute("SELECT row_to_json(top20spots(17)) FROM top20spots(17);")
-
+        
         # display the PostgreSQL database server version
         db_version = cur.fetchall()
         return json.dumps(db_version)
