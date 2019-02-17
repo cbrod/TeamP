@@ -143,14 +143,7 @@ def home():
                                    lat6=coords[5][0], long6=coords[5][1], lat7=coords[6][0], long7=coords[6][1],
                                    lat8=coords[7][0], long8=coords[7][1], lat9=coords[8][0], long9=coords[8][1],
                                    lat10=coords[9][0], long10=coords[9][1])
-
-        ''''''''''
-                  <h1>Estimated parking time: {}</h1>
-                  <h1>Parking spaces are: {}</h1>.format(when, coords)'''
-
     return render_template("BlankMap.html")
-
-
 
 if __name__ == "__main__":
     app.run(debug=True)
